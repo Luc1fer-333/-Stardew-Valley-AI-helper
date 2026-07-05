@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>星露谷小助手</title>
+    <link rel="stylesheet" href="./styles.css?v=ui-polish-1" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace" aria-label="星露谷小助手">
+        <aside class="sidebar">
+          <div class="window-dots" aria-hidden="true">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+
+          <div class="brand-block">
+            <div class="farm-badge" aria-hidden="true">
+              <svg viewBox="0 0 96 96" role="img">
+                <path d="M10 62 L48 30 L86 62 V86 H10 Z" fill="#f1c96b" />
+                <path d="M22 52 L48 28 L74 52 V86 H22 Z" fill="#b94f42" />
+                <path d="M34 86 V62 H62 V86 Z" fill="#5f3b2e" />
+                <path d="M20 86 C28 74 36 74 44 86 C52 74 60 74 68 86 Z" fill="#6f9e62" />
+                <path d="M6 65 C19 55 31 57 42 66 C55 51 73 53 91 66 V96 H6 Z" fill="#8ebf6f" />
+                <circle cx="72" cy="18" r="9" fill="#ffd76d" />
+              </svg>
+            </div>
+            <div>
+              <p class="eyebrow">Stardew Helper</p>
+              <h1>星露谷小助手</h1>
+            </div>
+          </div>
+
+          <nav class="mode-list" aria-label="资料分类">
+            <button class="mode-button active" data-mode="all">全部</button>
+            <button class="mode-button" data-mode="crop">作物</button>
+            <button class="mode-button" data-mode="gift">礼物</button>
+            <button class="mode-button" data-mode="quest">任务</button>
+            <button class="mode-button" data-mode="plan">路线</button>
+          </nav>
+
+          <div class="season-panel">
+            <p>季节</p>
+            <div class="season-grid">
+              <button data-season="spring" class="season-chip active">春</button>
+              <button data-season="summer" class="season-chip">夏</button>
+              <button data-season="fall" class="season-chip">秋</button>
+              <button data-season="winter" class="season-chip">冬</button>
+            </div>
+          </div>
+          <div class="pixel-farmyard" aria-hidden="true">
+            <span class="pixel-sunflower"></span>
+            <span class="pixel-chick"></span>
+            <span class="pixel-sprout"></span>
+          </div>
+        </aside>
+
+        <section class="main-panel">
+          <header class="hero">
+            <div>
+              <p class="eyebrow">作物 + 礼物 + 任务</p>
+              <h2>问它今天种什么，送谁什么，下一步做什么。</h2>
+            </div>
+            <div class="status-pill">
+              <span></span>
+              <strong id="statusText">本地知识库</strong>
+            </div>
+          </header>
+
+          <section class="farm-status" aria-label="助手状态">
+            <div>
+              <span>资料库</span>
+              <strong id="entryMetric">98 条</strong>
+            </div>
+            <div>
+              <span>维护方式</span>
+              <strong>Markdown</strong>
+            </div>
+            <div>
+              <span>缺口处理</span>
+              <strong>一键草稿</strong>
+            </div>
+            <div>
+              <span>运行模式</span>
+              <strong id="modeMetric">模板可用</strong>
+            </div>
+          </section>
+
+          <section class="cards-row" aria-label="快捷看板">
+            <article class="info-card" data-question="第一年春天怎么规划？">
+              <p>新手路线</p>
+              <strong>第一年春天怎么规划？</strong>
+              <span>作物留样、蛋节草莓、雨天下矿，一次串起来。</span>
+            </article>
+            <article class="info-card" data-question="Shane 喜欢什么礼物？">
+              <p>送礼查询</p>
+              <strong>Shane 喜欢什么？</strong>
+              <span>具体村民优先命中，不再被泛泛的送礼路线抢答。</span>
+            </article>
+            <article class="info-card" data-question="怎么解锁温室？">
+              <p>社区中心</p>
+              <strong>怎么解锁温室？</strong>
+              <span>围绕茶水间、四季作物和高品质作物来规划。</span>
+            </article>
+          </section>
+
+          <section class="assistant-grid">
+            <article class="chat-panel">
+              <div class="chat-header">
+                <div>
+                  <p class="eyebrow">AI-ish Chat</p>
+                  <h3>自然语言问攻略</h3>
+                </div>
+                <button id="clearChat" class="icon-button" title="清空对话" aria-label="清空对话">↺</button>
+              </div>
+
+              <div class="player-context" aria-label="当前玩家状态">
+                <button type="button" class="preset active" data-preset="rookie-spring">新手春天</button>
+                <button type="button" class="preset" data-preset="greenhouse-rush">冲温室</button>
+                <button type="button" class="preset" data-preset="midgame-money">中期赚钱</button>
+                <button type="button" class="active" data-context-group="stage" data-context-value="第一年">第一年</button>
+                <button type="button" data-context-group="stage" data-context-value="中期">中期</button>
+                <button type="button" class="active" data-context-group="budget" data-context-value="预算紧">预算紧</button>
+                <button type="button" data-context-group="budget" data-context-value="预算够">预算够</button>
+                <button type="button" class="active" data-context-group="watering" data-context-value="手浇">手浇</button>
+                <button type="button" data-context-group="watering" data-context-value="有洒水器">有洒水器</button>
+              </div>
+
+              <div class="preset-summary" aria-live="polite">
+                <strong id="presetTitle">新手春天</strong>
+                <span id="presetGoal">先稳住春季现金流，别让浇水和预算压垮节奏。</span>
+                <em id="presetRhythm">先问草莓和春季赚钱，再看雨天、筒仓和工具。</em>
+              </div>
+
+              <div id="chatLog" class="chat-log" aria-live="polite"></div>
+
+              <div class="suggestions" aria-label="建议问题">
+                <button>夏天怎么赚钱？</button>
+                <button>Penny 喜欢什么？</button>
+                <button>秋季作物包要留什么？</button>
+                <button>冬天能种什么？</button>
+              </div>
+
+              <form id="chatForm" class="chat-form">
+                <input
+                  id="questionInput"
+                  type="text"
+                  autocomplete="off"
+                  placeholder="问：蓝莓值不值得种？Penny 喜欢什么？"
+                />
+                <button id="sendButton" type="submit">发送</button>
+              </form>
+            </article>
+
+            <aside class="knowledge-panel">
+              <div class="pixel-cropbox" aria-hidden="true">
+                <span class="pixel-parsnip"></span>
+                <span class="pixel-strawberry"></span>
+                <span class="pixel-blueberry"></span>
+              </div>
+              <div class="panel-title">
+                <div>
+                  <p class="eyebrow">Knowledge</p>
+                  <h3>命中资料</h3>
+                </div>
+                <span id="resultCount">0</span>
+              </div>
+              <div class="panel-tabs" role="tablist" aria-label="右侧面板">
+                <button class="panel-tab active" type="button" role="tab" aria-selected="true" data-side-tab="knowledge">资料</button>
+                <button class="panel-tab" type="button" role="tab" aria-selected="false" data-side-tab="diagnostics">诊断</button>
+                <button class="panel-tab" type="button" role="tab" aria-selected="false" data-side-tab="maintenance">维护</button>
+              </div>
+              <div class="side-tab-panel active" data-tab-panel="knowledge">
+                <div id="knowledgeList" class="knowledge-list"></div>
+              </div>
+              <div class="side-tab-panel" data-tab-panel="diagnostics">
+                <div id="diagnosticsPanel" class="diagnostics-panel" hidden></div>
+              </div>
+              <div class="side-tab-panel" data-tab-panel="maintenance">
+                <div id="maintenancePanel" class="maintenance-panel"></div>
+              </div>
+            </aside>
+          </section>
+        </section>
+      </section>
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    </main>
+
+    <script src="./knowledge.generated.js?v=ui-polish-1"></script>
+    <script src="./app.js?v=ui-polish-1"></script>
+  </body>
+</html>
