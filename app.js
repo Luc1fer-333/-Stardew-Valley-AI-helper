@@ -1656,7 +1656,3 @@ refreshSuggestions();
 loadMaintenance();
 addMessage("assistant", uiText.greeting);
 checkBackend();
-
-
-
-
